@@ -1,0 +1,21 @@
+package com.example.modul1.datasource
+
+import android.app.Application
+import com.example.modul1.model.ImageData
+import com.example.modul1.R
+
+class LocalData: Application() {
+    companion object {
+        val images: Array<ImageData> = arrayOf(
+            ImageData(R.drawable.img_bromo, "Bromo", "28/02/2000"),
+            ImageData(R.drawable.img_canada, "Canada", "01/01/1987"),
+            ImageData(R.drawable.img_canada_river, "Canada River", "08/02/2003"),
+            ImageData(R.drawable.img_europe, "Europe", "18/05/2009"),
+            ImageData(R.drawable.img_german, "Germany", "12/08/2010"),
+            ImageData(R.drawable.img_mountain, "Mountain", "15/09/2011"),
+            ImageData(R.drawable.img_nature, "Nature","28/02/2000"),
+            ImageData(R.drawable.img_newyork, "NewYork", "28/02/2000"),
+            ImageData(R.drawable.img_river, "River","28/02/2000")
+        )
+    }
+}
