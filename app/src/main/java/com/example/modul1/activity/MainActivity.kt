@@ -1,10 +1,11 @@
-package com.example.modul1
+package com.example.modul1.activity
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.*
+import com.example.modul1.R
 import com.example.modul1.datasource.LocalData
 
 class MainActivity : AppCompatActivity() {
@@ -20,9 +21,11 @@ class MainActivity : AppCompatActivity() {
         val inflater = LayoutInflater.from(this)
         for (element in LocalData.images) {
             val view = inflater.inflate(R.layout.item, gallery, false)
-            val text = view.findViewById<TextView>(R.id.text)
-            text.text = element.title
+            val title = view.findViewById<TextView>(R.id.text)
+            var dateText = view.findViewById<TextView>(R.id.date_text)
             val image = view.findViewById<ImageView>(R.id.image)
+            title.text = element.title
+            dateText.text = "Take on "+element.date
             image.setImageResource(element.name)
             view.setOnLongClickListener {
                 Toast.makeText(
