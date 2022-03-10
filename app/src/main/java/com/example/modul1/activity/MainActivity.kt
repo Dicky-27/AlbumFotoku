@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         for (element in LocalData.images) {
             val view = inflater.inflate(R.layout.item, gallery, false)
             val title = view.findViewById<TextView>(R.id.text)
-            var dateText = view.findViewById<TextView>(R.id.date_text)
+            val dateText = view.findViewById<TextView>(R.id.date_text)
             val image = view.findViewById<ImageView>(R.id.image)
             title.text = element.title
             dateText.text = "Take on "+element.date
