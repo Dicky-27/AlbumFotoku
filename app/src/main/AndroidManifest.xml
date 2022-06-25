@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Modul1">
         <activity
+            android:name=".activity.AlbumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.CartActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>

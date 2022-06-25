@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -43,42 +44,50 @@
             android:layout_marginHorizontal="15dp"
             android:text="Cetak" />
 
-        <LinearLayout
-            android:id="@+id/linearHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="horizontal">
 
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/group_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            android:divider="@drawable/button_divider"
+            android:showDividers="middle">
                 <Button
                     android:id="@+id/first"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="3R" />
+                    android:text="3R"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"/>
 
                 <Button
                     android:id="@+id/second"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="4R" />
+                    android:text="4R"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"/>
 
                 <Button
                     android:id="@+id/third"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="8R" />
+                    android:text="8R"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"/>
 
                 <Button
                     android:id="@+id/fourt"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="10R" />
+                    android:text="10R"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"/>
 
-        </LinearLayout>
+        </com.google.android.material.button.MaterialButtonToggleGroup>
 
 </LinearLayout>

@@ -3,6 +3,8 @@ package com.example.modul1.datasource
 import android.app.Application
 import com.example.modul1.model.ImageData
 import com.example.modul1.R
+import com.example.modul1.model.Album
+import com.example.modul1.model.CategoryAlbum
 
 class LocalData: Application() {
     companion object {
@@ -16,6 +18,14 @@ class LocalData: Application() {
             ImageData(R.drawable.img_nature, "Nature","28/02/2000"),
             ImageData(R.drawable.img_newyork, "NewYork", "28/02/2000"),
             ImageData(R.drawable.img_river, "River","28/02/2000")
+        )
+
+        val category: List<CategoryAlbum> = listOf(
+            CategoryAlbum("Test 1", arrayListOf(Album("Title1"), Album("Title 2"))),
+            CategoryAlbum("Test 2", arrayListOf(Album("Title2"), Album("Title 3"))),
+            CategoryAlbum("Test 2", arrayListOf(Album("Title2"), Album("Title 3"))),
+            CategoryAlbum("Test 2", arrayListOf(Album("Title2"), Album("Title 3"))),
+            CategoryAlbum("Test 2", arrayListOf(Album("Title2"), Album("Title 3")))
         )
     }
 }
