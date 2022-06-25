@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.modul1.R
 import com.example.modul1.model.CategoryAlbum
+import com.example.modul1.model.CategoryWithAlbum
 
 class AlbumAdapter(
-    private val mainHeadingData: List<CategoryAlbum>,
+    private val mainHeadingData: List<CategoryWithAlbum>,
     val clickListener: View.OnClickListener
 ) : RecyclerView.Adapter<AlbumAdapter.ViewHolder>() {
 
@@ -23,13 +24,13 @@ class AlbumAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvCategory.text = mainHeadingData[position].category
+        holder.tvCategory.text = mainHeadingData[position].category.category
 
         val childLayoutManager = LinearLayoutManager(holder.itemView.findViewById<RecyclerView>(R.id.rvSub).context, RecyclerView.VERTICAL, false)
         Log.d("test3", mainHeadingData.toString())
         holder.itemView.findViewById<RecyclerView>(R.id.rvSub).apply {
             layoutManager = childLayoutManager
-            adapter = SubAdapter(mainHeadingData.get(position))
+            adapter = SubAdapter(mainHeadingData[position].albums)
             setRecycledViewPool(viewPool)
         }
     }

@@ -4,10 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.modul1.model.Album
 import com.example.modul1.model.Cart
+import com.example.modul1.model.CategoryAlbum
 
 
-@Database(entities = [Cart::class], version = 1, exportSchema = false)
+@Database(
+    entities = [
+        Cart::class,
+        CategoryAlbum::class,
+        Album::class
+               ],
+    version = 1, exportSchema = false)
 abstract class CartRoomDatabase : RoomDatabase() {
 
     companion object {

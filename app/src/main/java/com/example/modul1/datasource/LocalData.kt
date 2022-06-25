@@ -19,13 +19,5 @@ class LocalData: Application() {
             ImageData(R.drawable.img_newyork, "NewYork", "28/02/2000"),
             ImageData(R.drawable.img_river, "River","28/02/2000")
         )
-
-        val category: List<CategoryAlbum> = listOf(
-            CategoryAlbum("Test 1", arrayListOf(Album("Title1"), Album("Title 2"))),
-            CategoryAlbum("Test 2", arrayListOf(Album("Title2"), Album("Title 3"))),
-            CategoryAlbum("Test 2", arrayListOf(Album("Title2"), Album("Title 3"))),
-            CategoryAlbum("Test 2", arrayListOf(Album("Title2"), Album("Title 3"))),
-            CategoryAlbum("Test 2", arrayListOf(Album("Title2"), Album("Title 3")))
-        )
     }
 }

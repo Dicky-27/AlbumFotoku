@@ -1,7 +1,11 @@
 package com.example.modul1.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.modul1.model.Album
 import com.example.modul1.model.Cart
+import com.example.modul1.model.CategoryAlbum
+import com.example.modul1.model.CategoryWithAlbum
 
 @Dao
 interface CartDao {
@@ -23,4 +27,15 @@ interface CartDao {
 
     @Query("DELETE FROM cart")
     fun nukeTable()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCategory(category: CategoryAlbum)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAlbum(album: Album)
+
+    @Transaction
+    @Query("SELECT * FROM category")
+    fun getCategory(): List<CategoryWithAlbum>
 }
+
