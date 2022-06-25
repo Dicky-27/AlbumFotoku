@@ -1,11 +1,13 @@
 package com.example.modul1.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.modul1.R
 import com.example.modul1.adapter.AlbumAdapter
 import com.example.modul1.base.BaseActivity
@@ -24,44 +26,25 @@ class AlbumActivity : BaseActivity<ActivityAlbumBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album)
-        configureRv()
+
+        val dao = CartRoomDatabase.getDatabase(this).getNoteDao()
+        val categoryWithAlbum = dao.getCategory()
+        Log.d("test222", categoryWithAlbum.toString())
+        albumAdapter = AlbumAdapter(categoryWithAlbum, View.OnClickListener {
+            Log.d("test222", categoryWithAlbum.toString())
+        })
+
+        val rv: RecyclerView = this.findViewById(R.id.rv_album_ku)
+        rv.adapter = albumAdapter
+        val lm = LinearLayoutManager(this)
+        lm.orientation = LinearLayoutManager.VERTICAL
+        rv.layoutManager = lm
     }
 
-    private fun configureRv() {
-        val recyclerView = binding.rvAlbum
-        val dao = CartRoomDatabase.getDatabase(this).getNoteDao()
-        val category = listOf(
-            CategoryAlbum("Nature"),
-            CategoryAlbum("Building"),
-            CategoryAlbum("Street")
-        )
-
-        val album = listOf(
-            Album("Nature", "Gunung"),
-            Album("Nature", "Sungai"),
-            Album("Nature", "Hutan"),
-            Album("Building", "Sekolah"),
-            Album("Street", "Kantor"),
-            Album( "Street", "Rumah"),
-        )
-
-        lifecycleScope.launch {
-            category.forEach { dao.insertCategory(it) }
-            album.forEach { dao.insertAlbum(it) }
-
-            val categoryWithAlbum = dao.getCategory()
-
-            Log.d("test222", categoryWithAlbum.toString())
-
-            albumAdapter = AlbumAdapter(categoryWithAlbum, View.OnClickListener {
-                Log.d("test222", category.toString())
-            })
-
-            recyclerView.apply {
-                layoutManager = LinearLayoutManager(this@AlbumActivity)
-                adapter = albumAdapter
-            }
-        }
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onStart() {
+        super.onStart()
+        albumAdapter.notifyDataSetChanged()
     }
 
 }

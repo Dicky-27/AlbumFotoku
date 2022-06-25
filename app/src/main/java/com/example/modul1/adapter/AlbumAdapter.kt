@@ -27,10 +27,9 @@ class AlbumAdapter(
         holder.tvCategory.text = mainHeadingData[position].category.category
 
         val childLayoutManager = LinearLayoutManager(holder.itemView.findViewById<RecyclerView>(R.id.rvSub).context, RecyclerView.VERTICAL, false)
-        Log.d("test3", mainHeadingData.toString())
         holder.itemView.findViewById<RecyclerView>(R.id.rvSub).apply {
             layoutManager = childLayoutManager
-            adapter = SubAdapter(mainHeadingData[position].albums)
+            adapter = SubAdapter(mainHeadingData[position])
             setRecycledViewPool(viewPool)
         }
     }

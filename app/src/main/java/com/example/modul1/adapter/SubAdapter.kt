@@ -6,19 +6,18 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.modul1.R
-import com.example.modul1.model.Album
-import com.example.modul1.model.CategoryAlbum
+import com.example.modul1.model.CategoryWithAlbum
 
 class SubAdapter(
-    val subHeadingData: List<Album>
+    val subHeadingData: CategoryWithAlbum
 ) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun getItemCount(): Int {
-        return subHeadingData.size
+        return subHeadingData.albums.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvSubType.text = subHeadingData.get(position).titleAlbum
+        holder.tvSubType.text = subHeadingData.albums[position].titleAlbum
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {

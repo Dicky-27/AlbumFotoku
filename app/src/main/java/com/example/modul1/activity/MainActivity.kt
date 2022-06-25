@@ -4,12 +4,14 @@ import android.annotation.SuppressLint
 import android.app.ActionBar
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.core.view.MenuItemCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.modul1.R
 import com.example.modul1.base.BaseActivity
 import com.example.modul1.databinding.ActivityMainBinding
@@ -17,7 +19,10 @@ import com.example.modul1.databinding.ItemBinding
 import com.example.modul1.datasource.LocalData
 import com.example.modul1.db.CartDao
 import com.example.modul1.db.CartRoomDatabase
+import com.example.modul1.model.Album
 import com.example.modul1.model.Cart
+import com.example.modul1.model.CategoryAlbum
+import kotlinx.coroutines.launch
 import java.lang.String
 import kotlin.Boolean
 
@@ -43,6 +48,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         actionBar = supportActionBar!!
         actionBar.title = "Beranda"
         configureView()
+        addData()
     }
 
     @SuppressLint("SetTextI18n")
@@ -175,6 +181,29 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     textCartItemCount?.setVisibility(View.VISIBLE)
                 }
             }
+        }
+    }
+
+    private fun addData() {
+        val dao = CartRoomDatabase.getDatabase(this).getNoteDao()
+        val category = listOf(
+            CategoryAlbum("Nature"),
+            CategoryAlbum("Building"),
+            CategoryAlbum("Street")
+        )
+
+        val album = listOf(
+            Album("Nature", "Gunung"),
+            Album("Nature", "Sungai"),
+            Album("Nature", "Hutan"),
+            Album("Building", "Sekolah"),
+            Album("Street", "Kantor"),
+            Album("Street", "Rumah"),
+        )
+
+        lifecycleScope.launch {
+            category.forEach { dao.insertCategory(it) }
+            album.forEach { dao.insertAlbum(it) }
         }
     }
 }
