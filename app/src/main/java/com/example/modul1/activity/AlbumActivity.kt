@@ -1,6 +1,7 @@
 package com.example.modul1.activity
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.example.modul1.databinding.ActivityAlbumBinding
 import com.example.modul1.db.CartRoomDatabase
 import com.example.modul1.model.Album
 import com.example.modul1.model.CategoryAlbum
+import com.example.modul1.model.CategoryWithAlbum
 import kotlinx.coroutines.launch
 
 class AlbumActivity : BaseActivity<ActivityAlbumBinding>() {
@@ -30,8 +32,26 @@ class AlbumActivity : BaseActivity<ActivityAlbumBinding>() {
         val dao = CartRoomDatabase.getDatabase(this).getNoteDao()
         val categoryWithAlbum = dao.getCategory()
         Log.d("test222", categoryWithAlbum.toString())
-        albumAdapter = AlbumAdapter(categoryWithAlbum, View.OnClickListener {
-            Log.d("test222", categoryWithAlbum.toString())
+        albumAdapter = AlbumAdapter(categoryWithAlbum, dao, object : AlbumAdapter.OnAdapterListener{
+            override fun onItemClick(position: Int) {
+                Log.d("testfff", position.toString())
+                val dialogClickListener =
+                    DialogInterface.OnClickListener { dialog, which ->
+                        when (which) {
+                            DialogInterface.BUTTON_POSITIVE -> {
+                                albumAdapter.deleteCategory(position)
+                            }
+                            DialogInterface.BUTTON_NEGATIVE -> {
+                                dialog.dismiss()
+                            }
+                        }
+                    }
+
+                val builder = android.app.AlertDialog.Builder(this@AlbumActivity)
+                builder.setMessage("Jika kategory dihapus maka semua album didalam kategori akan dihapus, \n ada yakin untuk dilanjutkan?").setPositiveButton("Ya", dialogClickListener)
+                    .setNegativeButton("Tidak", dialogClickListener).show()
+            }
+
         })
 
         val rv: RecyclerView = this.findViewById(R.id.rv_album_ku)

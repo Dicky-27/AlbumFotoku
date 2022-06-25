@@ -1,10 +1,8 @@
 package com.example.modul1.activity
 
 import android.annotation.SuppressLint
-import android.app.ActionBar
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem

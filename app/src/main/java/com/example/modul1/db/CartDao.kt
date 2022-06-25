@@ -1,6 +1,5 @@
 package com.example.modul1.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.modul1.model.Album
 import com.example.modul1.model.Cart
@@ -33,6 +32,9 @@ interface CartDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAlbum(album: Album)
+
+    @Delete
+    fun deleteCategory(category: CategoryAlbum)
 
     @Transaction
     @Query("SELECT * FROM category")
